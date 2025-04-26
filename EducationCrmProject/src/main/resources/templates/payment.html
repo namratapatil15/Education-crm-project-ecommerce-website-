@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Course Payment</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form-container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 450px;
+    }
+
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .form-container p {
+      text-align: center;
+      font-size: 16px;
+      color: #444;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #2c3e50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1a252f;
+    }
+
+    .success-message {
+      color: green;
+      font-weight: bold;
+      text-align: center;
+      display: none;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Confirm Your Purchase</h2>
+    <p id="courseDetails">Loading course info...</p>
+
+    <form id="paymentForm">
+      <input type="email" id="email" placeholder="Enter Gmail" required>
+      <input type="text" id="name" placeholder="Enter Full Name" required>
+      <input type="tel" id="phone" placeholder="Enter Phone Number" required pattern="[0-9]{10}">
+      <button type="submit">Pay Securely</button>
+    </form>
+
+    <div class="success-message" id="successMsg">✅ Payment Successful! You're enrolled.</div>
+  </div>
+
+  <script>
+    // Get course and price from URL
+    const params = new URLSearchParams(window.location.search);
+    const course = params.get('course') || 'Selected Course';
+    const price = params.get('price') || 'N/A';
+
+    // Show course details
+    document.getElementById('courseDetails').innerText = `Course: ${course} | Price: ₹${price}`;
+
+    // Handle form submission
+    const form = document.getElementById('paymentForm');
+    const successMsg = document.getElementById('successMsg');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+
+      if (!email.endsWith('@gmail.com')) {
+        alert('Please enter a valid Gmail address.');
+        return;
+      }
+
+      if (!/^[0-9]{10}$/.test(phone)) {
+        alert('Phone number must be 10 digits.');
+        return;
+      }
+
+      form.style.display = 'none';
+      successMsg.style.display = 'block';
+    });
+  </script>
+
+</body>
+</html>

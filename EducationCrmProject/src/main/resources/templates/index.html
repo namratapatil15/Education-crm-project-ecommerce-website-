@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Smart Programming</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+	
+</head>
+
+<body>
+
+	<!-- header starts -->
+    <div th:if="${sessionUser == null OR sessionUser == ''}">
+    	<div th:replace="~{fragments/header :: crm-header}"></div>
+    </div>
+    <div th:unless="${sessionUser == null OR sessionUser == ''}">
+    	<div th:replace="~{fragments/user-header :: u-header}"></div>
+    </div>
+    <!-- header ends -->
+	<!-- The sidebar -->
+	
+	
+	
+	<style>
+	    .sidebar {
+	      height: 100vh;
+	      width: 220px;
+	      position: fixed;
+	      top: 0;
+	      left: 0;
+	      background-color: #2c3e50;
+	      padding-top: 20px;
+	      color: white;
+	      transition: transform 0.3s ease;
+	    }
+
+	    .sidebar.closed {
+	      transform: translateX(-100%);
+	    }
+
+	    .sidebar ul {
+	      list-style-type: none;
+	      padding: 0;
+	    }
+
+	    .sidebar ul li {
+	      padding: 15px 20px;
+	      border-bottom: 1px solid #34495e;
+	    }
+
+	    .sidebar ul li a {
+	      color: white;
+	      text-decoration: none;
+	      display: block;
+	    }
+
+	    .sidebar ul li a:hover {
+	      background-color: #34495e;
+	    }
+
+	    #main-content {
+	      margin-left: 240px;
+	      padding: 20px;
+	      transition: margin-left 0.3s ease;
+	    }
+
+	    #main-content.shifted {
+	      margin-left: 20px;
+	    }
+
+	    #toggle-button {
+	      position: absolute;
+	      top: 10px;
+	      left: 10px;
+	      background-color: rgb(0, 128, 255);
+	      color: white;
+	      border: none;
+	      padding: 10px 15px;
+	      cursor: pointer;
+	      z-index: 1000;
+	    }
+	  </style>
+	</head>
+	<body>
+
+	  <button id="toggle-button">☰</button>
+
+	  <div class="sidebar" id="sidebar">
+	    <h2 style="text-align: center;">Roles</h2>
+	    <ul>
+	      <li><a href="/courseManagement">Admin</a></li>
+	      <li><a href="/employeeLogout">Employee</a></li>
+	     
+	     
+	    </ul>
+	  </div>
+
+	 
+	  <script>
+	    const toggleButton = document.getElementById('toggle-button');
+	    const sidebar = document.getElementById('sidebar');
+	    const mainContent = document.getElementById('main-content');
+
+	    toggleButton.addEventListener('click', () => {
+	      sidebar.classList.toggle('closed');
+	      mainContent.classList.toggle('shifted');
+	    });
+	  </script>
+
+	<!-- Page content -->
+	<div class="content">
+	  ..
+	</div>
+    <!-- main content starts -->
+    <main class="container-fluid">
+        <!-- banner -->
+        <section>
+            <img src="images/banner.jpg" alt="Smart Programming Banner" width="100%" />
+        </section>
+
+        <!-- content -->
+        <section class="container py-5 bg-light">
+            <h3 class="text-center mb-4"> Our Courses </h3>
+
+            <!-- courses div start -->
+            <div class="row g-4">
+            
+                <!-- one course card start -->
+				<div class="col-lg-3 col-md-6">
+				                    <div class="card" style="width: 18rem;">
+				                        <img src="uploads/cjava.jpg" class="card-img-top" alt="...">
+				                        <div class="card-body">
+				                            <h5 class="card-title">C Programming</h5>
+				                            <p class="card-text">
+				                                This course contains C Programming concepts, interview preparation, case studies and 4
+				                                projects
+				                            </p>
+				                            <p> <strong>Price :</strong> <del>Rs. 3500</del> <span class="bg-info p-1">Rs. 2500</span> </p>
+				                            <a href="buyCourse?courseName=bio" class="btn btn-primary">Buy</a>
+				                        </div>
+				                        <div class="card-footer text-body-secondary">
+				                            Updated : 2 days ago
+				                        </div>
+				                    </div>
+				                </div>
+
+				                <div class="col-lg-3 col-md-6">
+				                    <div class="card" style="width: 18rem;">
+				                        <img src="uploads/cppjava.jpg" class="card-img-top" alt="...">
+				                        <div class="card-body">
+				                            <h5 class="card-title">C++ Programming</h5>
+				                            <p class="card-text">
+				                                This course contains core java concepts, interview preparation, case studies and 5
+				                                projects
+				                            </p>
+				                            <p> <strong>Price :</strong> <del>Rs. 3500</del> <span class="bg-info p-1">Rs. 2500</span> </p>
+				                            <a href="buyCourse?courseName=bio" class="btn btn-primary">Buy</a>
+				                        </div>
+				                        <div class="card-footer text-body-secondary">
+				                            Updated : 2 days ago
+				                        </div>
+				                    </div>
+				                </div>
+
+				                <div class="col-lg-3 col-md-6">
+				                    <div class="card" style="width: 18rem;">
+				                        <img src="uploads/addjava.jpeg" class="card-img-top" alt="...">
+				                        <div class="card-body">
+				                            <h5 class="card-title">Advance Java</h5>
+				                            <p class="card-text">
+				                                This course contains Advance Java concepts, interview preparation, case studies and 5
+				                                projects
+				                            </p>
+				                            <p> <strong>Price :</strong> <del>Rs. 5999</del> <span class="bg-info p-1">Rs. 1999</span> </p>
+				                            <a href="buyCourse?courseName=bio" class="btn btn-primary">Buy</a>
+				                        </div>
+				                        <div class="card-footer text-body-secondary">
+				                            Updated : 2 days ago
+				                        </div>
+				                    </div>
+				                </div>
+
+				                <div class="col-lg-3 col-md-6">
+				                    <div class="card" style="width: 18rem;">
+				                        <img src="uploads/android.png" class="card-img-top" alt="...">
+				                        <div class="card-body">
+				                            <h5 class="card-title">Android</h5>
+				                            <p class="card-text">
+				                                This course contains Android concepts, interview preparation, case studies and 5
+				                                projects
+				                            </p>
+				                            <p> <strong>Price :</strong> <del>Rs. 5999</del> <span class="bg-info p-1">Rs. 1999</span> </p>
+				                            <a href="buyCourse?courseName=bio" class="btn btn-primary">Buy</a>
+				                        </div>
+				                        <div class="card-footer text-body-secondary">
+				                            Updated : 2 days ago
+				                        </div>
+				                    </div>
+				                </div>
+
+				                <div class="col-lg-3 col-md-6">
+				                    <div class="card" style="width: 18rem;">
+				                        <img src="uploads/colectnjava.png" class="card-img-top" alt="...">
+				                        <div class="card-body">
+				                            <h5 class="card-title">Array Collection</h5>
+				                            <p class="card-text">
+				                                This course contains Array Collection concepts, interview preparation, case studies and 5
+				                                projects
+				                            </p>
+				                            <p> <strong>Price :</strong> <del>Rs. 1500</del> <span class="bg-info p-1">Rs. 500</span> </p>
+				                            <a href="buyCourse?courseName=bio" class="btn btn-primary">Buy</a>
+				                        </div>
+				                        <div class="card-footer text-body-secondary">
+				                            Updated : 2 days ago
+				                        </div>
+				                    </div>
+				                </div>
+
+				            </div>
+                <!-- one course card ends -->
+                
+            </div>
+            <!-- courses div end -->
+        </section>
+    </main>
+    <!-- main content ends -->
+
+    <!-- footer starts -->
+    <div th:replace="~{fragments/footer :: crm-footer}"></div>
+    <!-- footer ends -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+		
+		
+        
+		<!DOCTYPE html>
+		
+		  <button onclick="openModal()">Buy</button>
+
+		  <!-- Modal -->
+		  <!-- Modal -->
+		  <div class="modal" id="billingModal">
+		    <div class="modal-content">
+		      <span class="close" onclick="closeModal()">×</span>
+		      <h2>Enter Billing Details</h2>
+		      <input type="text" id="name" placeholder="Your Name" required />
+		      <input type="email" id="email" placeholder="Your Email" required />
+		      <input type="tel" id="phone" placeholder="Your Phone Number" required />
+		      <button class="submit-btn" onclick="submitForm()">Proceed to Pay</button>
+		    </div>
+		  </div>
+
+		  <script>
+		    let selectedCourse = { name: "", amount: 0 };
+
+		    function openModal(courseName, courseAmount) {
+		      selectedCourse.name = courseName;
+		      selectedCourse.amount = courseAmount;
+		      document.getElementById('billingModal').style.display = 'flex';
+		    }
+
+		    function closeModal() {
+		      document.getElementById('billingModal').style.display = 'none';
+		    }
+
+		    function submitForm() {
+		      const name = document.getElementById('name').value.trim();
+		      const email = document.getElementById('email').value.trim();
+		      const phone = document.getElementById('phone').value.trim();
+
+		      if (name && email && phone) {
+		        closeModal();
+		        purchaseCourse(selectedCourse.name, selectedCourse.amount, name, email, phone);
+		      } else {
+		        alert("Please fill out all fields.");
+		      }
+		    }
+
+		    function purchaseCourse(courseName, courseAmount, uname, uemail, uphoneno) {
+		      var options = {
+		        "key": "rzp_test_5MvmFPiJ6ZxL25",
+		        "amount": courseAmount * 100,
+		        "currency": "INR",
+		        "name": "Smart Programming",
+		        "description": "Course Transaction",
+		        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO67FwD9X8RUcz06z5OZto0lNs4QqwOKTcFA&s",
+		        "handler": function (response){
+		          var date = new Date();
+		          var dateOfPurchase = date.toLocaleDateString('en-GB') + ", " + date.toLocaleTimeString('en-GB', {hour12: true});
+		          var requestData = {
+		            courseName: courseName,
+		            courseAmount: courseAmount,
+		            userEmail: uemail,
+		            dateOfPurchase: dateOfPurchase,
+		            paymentId: response.razorpay_payment_id
+		          };
+
+		          $.ajax({
+		            type: "POST",
+		            url: "/api/storeOrderDetails",
+		            contentType: "application/json",
+		            data: JSON.stringify(requestData),
+		            success: function(response){
+		              alert("Congrats, course has been provided. Thank you!");
+		              window.location.href = '/myCourses';
+		            },
+		            error: function(error){
+		              alert("Some error occurred: " + error.responseText || error);
+		            }
+		          });
+		        },
+		        "prefill": {
+		          "name": uname,
+		          "email": uemail,
+		          "contact": uphoneno
+		        },
+		        "notes": {
+		          "courseName": courseName
+		        },
+		        "theme": {
+		          "color": "#3399cc"
+		        }
+		      };
+
+		      var rzp1 = new Razorpay(options);
+		      rzp1.on('payment.failed', function (response){
+		        alert("Payment Failed. Please try again.");
+		      });
+		      rzp1.open();
+		    }
+		  </script>
+
+		  <style>
+		    .modal {
+		      display: none;
+		      position: fixed;
+		      z-index: 1000;
+		      top: 0; left: 0;
+		      width: 100%; height: 100%;
+		      background: rgba(0, 0, 0, 0.6);
+		      justify-content: center;
+		      align-items: center;
+		    }
+
+		    .modal-content {
+		      background: white;
+		      padding: 2rem;
+		      border-radius: 10px;
+		      width: 90%;
+		      max-width: 400px;
+		      text-align: left;
+		    }
+
+		    .close {
+		      float: right;
+		      font-size: 1.2rem;
+		      cursor: pointer;
+		    }
+
+		    .submit-btn {
+		      background-color: #0077cc;
+		      color: white;
+		      border: none;
+		      padding: 0.75rem;
+		      width: 100%;
+		      border-radius: 5px;
+		      cursor: pointer;
+		    }
+		  </style>
+
+		  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</html>
